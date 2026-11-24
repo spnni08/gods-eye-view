@@ -1,0 +1,18 @@
+# Cloudflare Pages response headers.
+#
+# frame-ancestors controls which origins may embed this app in an iframe.
+# Replace NOVA_ORIGIN_HIER_EINTRAGEN with your Cloudflare Pages URL, e.g.:
+#   frame-ancestors https://nova.pages.dev
+# Multiple origins are separated by spaces:
+#   frame-ancestors https://nova.pages.dev https://nova-preview.pages.dev
+#
+# X-Frame-Options is intentionally absent: it would block all framing and
+# cannot be scoped to a single trusted origin the way frame-ancestors can.
+#
+# Note: Cloudflare Pages cannot match query strings (?embed=1), so
+# frame-ancestors applies to all pages. Only the NOVA origin is allowed,
+# so the security posture for non-embed use is equivalent to 'none'.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval' blob: https://www.youtube.com https://connect.facebook.net https://platform.twitter.com https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' blob: https:; connect-src 'self' blob: data: https: wss: ws:; worker-src 'self' blob:; child-src 'self' blob:; frame-src 'self' blob: https://www.youtube-nocookie.com https://www.youtube.com https://www.facebook.com https://platform.twitter.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors NOVA_ORIGIN_HIER_EINTRAGEN
+  X-Content-Type-Options: nosniff
